@@ -50,8 +50,7 @@ public class JavaMysql {
                 System.out.println("Ingresa el id_producto");
                 String idProd = scan.nextLine();
                 
-                query = "DELETE FROM producto"
-                        + " WHERE id_producto = ?";
+                query = "DELETE FROM producto WHERE id_producto = ?";
                 PreparedStatement ps = connect.prepareStatement(query);
                 ps.setInt(1, Integer.parseInt(idProd));
                 ps.executeUpdate();
@@ -68,8 +67,7 @@ public class JavaMysql {
                 System.out.println("Ingresa el precio");
                 String precio = scan.nextLine();
                 
-                query = "UPDATE producto SET desc_producto = ?,"
-                        + "precio = ? WHERE id_producto = ?";
+                query = "UPDATE producto SET desc_producto = ?, precio = ? WHERE id_producto = ?";
                 PreparedStatement ps = connect.prepareStatement(query);
                 ps.setString(1, descProd);
                 ps.setInt(2, Integer.parseInt(precio));
