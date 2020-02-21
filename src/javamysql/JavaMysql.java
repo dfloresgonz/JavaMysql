@@ -1,5 +1,6 @@
 package javamysql;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -38,13 +39,18 @@ public class JavaMysql {
                 
                 scan = new Scanner(System.in);
                 System.out.println("Ingresa el precio");
-                String precio = scan.nextLine();
-                query = "INSERT INTO producto VALUES (?, ?, ?)";
-                PreparedStatement ps = connect.prepareStatement(query);
-                ps.setInt(1, Integer.parseInt(idProd));
-                ps.setString(2, descProd);
-                ps.setInt(3, Integer.parseInt(precio));
-                ps.executeUpdate();
+                int precio = scan.nextInt();
+                query = "{call insertar_producto(?, ?)}";
+                CallableStatement stmt = connect.prepareCall(query);
+                stmt.setString(1, descProd);
+                stmt.setInt(2, precio);
+                stmt.execute();
+//                query = "INSERT INTO producto VALUES (?, ?, ?)";
+//                PreparedStatement ps = connect.prepareStatement(query);
+//                ps.setInt(1, Integer.parseInt(idProd));
+//                ps.setString(2, descProd);
+//                ps.setInt(3, Integer.parseInt(precio));
+//                ps.executeUpdate();
             } else if (accion.equals("BORRAR")) {
                 scan = new Scanner(System.in);
                 System.out.println("Ingresa el id_producto");
