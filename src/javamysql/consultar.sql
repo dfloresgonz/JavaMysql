@@ -7,13 +7,16 @@ CREATE PROCEDURE traer_data(
 LANGUAGE SQL MODIFIES SQL DATA
 BEGIN
     START TRANSACTION;
-    SELECT id_producto,
-           desc_producto,
-           precio AS precio_soles, -- alias
-           precio / 3.5 AS precio_dolares
-      FROM producto
-     WHERE precio BETWEEN _p_precio1 AND _p_precio2
-     ORDER BY precio DESC;
+    SELECT p.id_producto,
+           p.desc_producto,
+           p.precio AS precio_soles, -- alias
+           p.precio / 3.5 AS precio_dolares,
+           UPPER(c.desc_categoria) AS categoria
+      FROM producto p,
+           categoria c
+     WHERE p.precio BETWEEN _p_precio1 AND _p_precio2
+       AND p._id_categoria = c.id_categoria
+     ORDER BY p.precio DESC;
     COMMIT;
 END$$
 DELIMITER ;
