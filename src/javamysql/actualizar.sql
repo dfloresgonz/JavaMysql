@@ -9,8 +9,8 @@ CREATE PROCEDURE actualizar_producto(
 BEGIN
     --
     UPDATE producto
-       SET nombre = _p_nombre,
-           precio = _p_precio
+       SET desc_producto = _p_nombre,
+           precio        = _p_precio
      WHERE id_producto = _p_id_producto;
     --
     IF ROW_COUNT() > 0 THEN
