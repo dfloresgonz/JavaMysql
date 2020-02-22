@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS categoria;
+DROP TABLE IF EXISTS cliente;
+DROP TABLE IF EXISTS compras;
+ALTER TABLE producto DROP IF EXISTS _id_categoria;
 CREATE TABLE categoria(
     id_categoria INT,
     desc_categoria VARCHAR(30)
